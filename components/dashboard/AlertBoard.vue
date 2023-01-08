@@ -12,6 +12,18 @@
         :server-items-length="total"
         class="flex-grow-1"
       >
+        <template #item.category="{ item }">
+          <v-btn
+            text
+            small
+            plain
+            color="secondary"
+            class="text-decoration-underline"
+            @click="showInsight(item)">
+            {{ item.category.name }}
+          </v-btn>
+        </template>
+
         <template #item.category.spendings="{ item }">
           <div class="pink--text">
             {{ item.category.spendings | money }} pln
@@ -33,12 +45,22 @@
       </v-data-table>
 
     </v-card-text>
+
+    <CategoryInsightDialogComponent
+      :category="insight.category"
+      :date="date"
+      :dialog.sync="insight.show" />
+
   </v-card>
 </template>
 <script>
 import moment from 'moment'
+import CategoryInsightDialogComponent from '~/components/budget/CategoryInsightDialogComponent'
 
 export default {
+  components:{
+    CategoryInsightDialogComponent,
+  },
   props: {
     date: {
       type: String,
@@ -47,12 +69,16 @@ export default {
   },
   data() {
     return {
+      insight: {
+        show: false,
+        category: null
+      },
       items: [],
       isLoading: false,
       total: 0,
       options: {},
       headers: [
-        { text: 'Category', align: 'left', value: 'category.name', sortable: false },
+        { text: 'Category', align: 'left', value: 'category', sortable: false },
         { text: 'Spendings', align: 'left', value: 'category.spendings', sortable: false },
         { text: 'Budget', align: 'left', value: 'budget', sortable: false },
         { text: 'Exceeding', align: 'left', value: 'exceeding', sortable: false }
@@ -71,6 +97,12 @@ export default {
     }
   },
   methods: {
+    showInsight(item) {
+      this.insight = {
+        show: true,
+        category: item.category
+      }
+    },
     resetTable() {
       this.items = []
       this.total = 0
