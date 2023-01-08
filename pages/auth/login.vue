@@ -33,7 +33,7 @@
                 <validation-provider
                   v-slot="{ errors }"
                   name="Password"
-                  rules="required|min:8"
+                  rules="required|min:4"
                   tag="div"
                   vid="password"
                 >
