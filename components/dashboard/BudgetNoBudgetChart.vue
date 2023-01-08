@@ -3,7 +3,6 @@
     <v-card-text>
       <ApexChart
         v-if="canShowChart"
-        width="100%"
         type="donut"
         :options="options"
         :series="series" />
@@ -48,6 +47,14 @@ export default {
           id: 'budget',
           background: 'rgba(0, 0, 0, 0)'
         },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              height: 600
+            }
+          }
+        }],
         theme: {
           mode: 'dark',
           palette: 'palette2'

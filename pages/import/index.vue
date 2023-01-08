@@ -14,7 +14,7 @@
               </v-card-title>
               <v-card-text>
                 <v-row>
-                  <v-col cols="6">
+                  <v-col sm="12" md="6">
                     <validation-provider
                       v-slot="{ errors }"
                       name="bank"
@@ -119,6 +119,11 @@ export default {
           accept: '.pdf'
         }
       ]
+    }
+  },
+  head() {
+    return {
+      title: 'Import data'
     }
   },
   computed: {

@@ -9,14 +9,14 @@
         </v-card>
 
         <v-row>
-          <v-col lg="12">
+          <v-col cols="12">
             <AlertBoard :date="date" />
           </v-col>
 
-          <v-col cols="6">
+          <v-col cols="12" md="6">
             <CategoryChart :date="date" />
           </v-col>
-          <v-col cols="6">
+          <v-col cols="12" md="6">
             <BudgetNoBudgetChart :date="date" />
           </v-col>
         </v-row>
@@ -36,6 +36,11 @@ export default {
     CategoryChart,
     BudgetNoBudgetChart,
     AlertBoard
+  },
+  head() {
+    return {
+      title: 'Dashboard'
+    }
   },
   computed: {
     ...mapGetters('app', {

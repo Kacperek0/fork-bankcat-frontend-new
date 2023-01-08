@@ -2,9 +2,9 @@
   <v-menu
     v-model="modal.show"
     :close-on-content-click="false"
-    :nudge-right="40"
     transition="scale-transition"
     offset-y
+    left
     min-width="auto"
   >
     <template #activator="{ on, attrs }">
