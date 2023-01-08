@@ -113,8 +113,6 @@ export default {
         return
       }
 
-      console.log('Loading spendings')
-
       this.isLoading = true
 
       try {
