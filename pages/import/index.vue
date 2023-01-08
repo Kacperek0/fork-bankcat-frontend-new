@@ -110,7 +110,7 @@ export default {
         },
         {
           name: 'Grupa PBS',
-          url: 'grupapbs/import_csv',
+          url: 'grupabps/import_csv',
           accept: '.csv'
         },
         {
