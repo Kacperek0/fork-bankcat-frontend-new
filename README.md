@@ -6,10 +6,11 @@ use ``yarn``
 
 use node ^v18.12.1
 
-# DEV:
+##preparations:
+cp .env.dev .env && yarn install
 
+# DEV:
 yarn dev
 
 # PROD
-
 yarn build && yarn start
