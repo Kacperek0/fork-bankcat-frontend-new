@@ -28,17 +28,16 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters('app', {
-      date: 'getDate'
-    })
-  },
   data() {
     return {
       modal: {
         show: false
       }
     }
+  }, computed: {
+    ...mapGetters('app', {
+      date: 'getDate'
+    })
   },
   methods: {
     changeDate(date) {
