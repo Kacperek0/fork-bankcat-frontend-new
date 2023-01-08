@@ -143,6 +143,8 @@ export default {
         formData.append('file', this.form.file)
 
         await this.$axios.post(`/api/${this.form.bank}`, formData)
+
+        await this.$router.push({ name: 'spendings' })
       } catch (err) {
         this.dealWithFailedRequest(err)
       } finally {

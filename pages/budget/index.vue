@@ -45,6 +45,18 @@
               :server-items-length="total"
               class="flex-grow-1"
             >
+              <template #item.category="{ item }">
+                <v-btn
+                  text
+                  small
+                  plain
+                  color="secondary"
+                  class="text-decoration-underline"
+                  @click="showInsight(item)">
+                  {{ item.category.name }}
+                </v-btn>
+              </template>
+
               <template #item.category.spendings="{ item }">
                 {{ item.category.spendings | money }} pln
               </template>
@@ -94,17 +106,25 @@
       :dialog.sync="dialog.show"
       :spending="dialog.spending"
       @refresh="refresh" />
+
+    <CategoryInsightDialogComponent
+      :category="insight.category"
+      :date="date"
+      :dialog.sync="insight.show" />
+
     <ConfirmDialog ref="confirm" />
   </v-container>
 </template>
 <script>
 import moment from 'moment'
 import BudgetDialogComponent from '~/components/budget/BudgetDialogComponent'
+import CategoryInsightDialogComponent from '~/components/budget/CategoryInsightDialogComponent'
 import ConfirmDialog from '~/components/dialogs/ConfirmDialog'
 
 export default {
   components: {
     BudgetDialogComponent,
+    CategoryInsightDialogComponent,
     ConfirmDialog
   },
   data() {
@@ -115,6 +135,10 @@ export default {
         category: null,
         spending: 0
       },
+      insight: {
+        show: false,
+        category: null
+      },
       modal: {
         show: false
       },
@@ -124,7 +148,7 @@ export default {
       options: {},
       items: [],
       headers: [
-        { text: 'Category', align: 'left', value: 'category.name', sortable: false },
+        { text: 'Category', align: 'left', value: 'category', sortable: false },
         { text: 'Spendings', align: 'left', value: 'category.spendings', sortable: false },
         { text: 'Budget', align: 'left', value: 'budget', sortable: false },
         { text: 'Result', align: 'left', value: 'result', sortable: false },
@@ -149,12 +173,10 @@ export default {
     }
   },
   methods: {
-    close() {
-      this.dialog = {
-        show: false,
-        model: null,
-        category: null,
-        spending: 0
+    showInsight(item) {
+      this.insight = {
+        show: true,
+        category: item.category
       }
     },
     create(item) {

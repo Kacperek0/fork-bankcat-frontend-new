@@ -59,7 +59,6 @@
             </div>
 
             <v-data-table
-              v-if="categories.length > 0"
               v-model="selected"
               :headers="headers"
               :items="items"
@@ -82,7 +81,7 @@
               </template>
 
               <template #item.category="{ item }">
-                {{ getCategory(item.category_id).name }}
+                {{ item.category.name }}
               </template>
 
               <template #item.action="{ item }">
@@ -135,7 +134,6 @@ export default {
       total: 0,
       options: {},
       items: [],
-      categories: [],
       date: moment().format('YYYY-MM'),
       headers: [
         { text: 'Date', align: 'left', value: 'date', sortable: false, width: 110 },
@@ -162,35 +160,7 @@ export default {
       await this.getDataFromApi()
     }
   },
-  async beforeMount() {
-    await this.fetchCategories()
-  },
   methods: {
-    getCategory(id) {
-      return this.categories.find((c) => c.id === id)
-    },
-    async fetchCategories() {
-      this.isLoading = true
-
-      try {
-        this.resetTable()
-
-        const skip = 0
-        const limit = 1000
-
-        const response = await this.$axios.get('/api/categories', {
-          params: {
-            skip,
-            limit
-          }
-        })
-
-        this.categories = response.data
-      } catch (e) {
-      } finally {
-        this.isLoading = false
-      }
-    },
     close() {
       this.dialog = {
         show: false,

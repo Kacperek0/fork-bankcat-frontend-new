@@ -15,12 +15,14 @@
   "dependencies": {
     "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
     "@nuxtjs/axios": "^5.13.6",
+    "apexcharts": "^3.36.3",
     "core-js": "^3.25.3",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.39",
     "nuxt": "^2.15.8",
     "vee-validate": "^3.4.14",
     "vue": "^2.7.10",
+    "vue-apexcharts": "^1.6.2",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
     "vuetify": "^2.6.10"

@@ -38,6 +38,7 @@ export default {
   plugins: [
     { src: '~/plugins/veeValidate.js', mode: 'client' },
     { src: '~/plugins/notifier.js', mode: 'client' },
+    { src: '~/plugins/apexcharts.js', mode: 'client' },
 
     { src: '~/filters/formatDate.js', mode: 'client' },
     { src: '~/filters/money.js', mode: 'client' },
@@ -76,7 +77,7 @@ export default {
   auth: {
     redirect: {
       login: '/auth/login',
-      logout: false,
+      logout: '/',
       home: '/dashboard'
     },
     strategies: {
@@ -95,6 +96,7 @@ export default {
         },
         endpoints: {
           login: { url: '/api/login', method: 'post' },
+          logout: { url: '/api/logout', method: 'post' },
           user: { url: '/api/users/me', method: 'get' }
         }
       }
