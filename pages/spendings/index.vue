@@ -5,34 +5,6 @@
         <v-card>
           <v-card-title class="d-flex">
             <div>Spendings</div>
-
-            <v-spacer></v-spacer>
-
-            <v-menu
-              v-model="modal.show"
-              :close-on-content-click="false"
-              :nudge-right="40"
-              transition="scale-transition"
-              offset-y
-              min-width="auto"
-            >
-              <template #activator="{ on, attrs }">
-                <v-text-field
-                  v-model="date"
-                  label="Month date"
-                  prepend-icon="mdi-calendar"
-                  readonly
-                  v-bind="attrs"
-                  v-on="on"
-                ></v-text-field>
-              </template>
-              <v-date-picker
-                v-model="date"
-                type="month"
-                @input="modal.show = false"
-              ></v-date-picker>
-            </v-menu>
-
           </v-card-title>
 
           <v-card-text>
@@ -48,6 +20,7 @@
               <v-text-field
                 v-model="filters.query"
                 placeholder="Search phrase"
+                clearable
                 class="mr-2">
               </v-text-field>
               <v-btn
@@ -81,7 +54,11 @@
               </template>
 
               <template #item.category="{ item }">
-                {{ item.category.name }}
+                <template v-if="item.category">
+                  {{ item.category.name }}
+                </template>
+                <div class="grey--text caption font-italic">No category</div>
+
               </template>
 
               <template #item.action="{ item }">
@@ -103,6 +80,7 @@
 </template>
 <script>
 import moment from 'moment'
+import { mapGetters } from 'vuex'
 import SpendingDialogComponent from '~/components/spending/SpendingDialogComponent'
 import AssignDialogComponent from '~/components/spending/AssignDialogComponent'
 import ConfirmDialog from '~/components/dialogs/ConfirmDialog'
@@ -126,15 +104,11 @@ export default {
         show: false,
         model: null
       },
-      modal: {
-        show: false
-      },
       selected: [],
       isLoading: false,
       total: 0,
       options: {},
       items: [],
-      date: moment().format('YYYY-MM'),
       headers: [
         { text: 'Date', align: 'left', value: 'date', sortable: false, width: 110 },
         { text: 'Description', align: 'left', value: 'description', sortable: false },
@@ -143,6 +117,11 @@ export default {
         { text: 'Actions', sortable: false, align: 'left', value: 'action', width: 100 }
       ]
     }
+  },
+  computed: {
+    ...mapGetters('app', {
+      date: 'getDate'
+    })
   },
   head() {
     return {

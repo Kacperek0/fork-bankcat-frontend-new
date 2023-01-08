@@ -38,6 +38,10 @@
 
       <v-spacer></v-spacer>
 
+      <DatePickerComponent />
+
+      <v-spacer></v-spacer>
+
       <div class="d-flex align-center pa-4">
         <v-icon class="mr-1" dark>
           mdi-account
@@ -54,5 +58,11 @@
   </v-app-bar>
 </template>
 <script>
-export default {}
+import DatePickerComponent from '~/components/navigation/DatePickerComponent'
+
+export default {
+  components: {
+    DatePickerComponent
+  }
+}
 </script>
