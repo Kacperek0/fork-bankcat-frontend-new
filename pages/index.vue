@@ -5,8 +5,8 @@
         <v-card>
           <v-card-title>Welcome</v-card-title>
           <v-card-text class='d-flex justify-center'>
-            <v-btn class='ma-1' :to="{ name: 'auth-login' }" color='primary'>SignIn</v-btn>
-            <v-btn class='ma-1' :to="{ name: 'auth-register' }" color='secondary'>SingUp</v-btn>
+            <v-btn class='ma-1' :to="{ name: 'auth-login' }" color='primary'>Sign In</v-btn>
+            <v-btn class='ma-1' :to="{ name: 'auth-register' }" color='secondary'>Sign Up</v-btn>
           </v-card-text>
         </v-card>
       </v-col>

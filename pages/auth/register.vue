@@ -115,7 +115,7 @@
                   large
                   type="submit"
                   width="100%"
-                >Sing Up
+                >Sign Up
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -145,7 +145,7 @@ export default {
   },
   head() {
     return {
-      title: 'SignUp'
+      title: 'Sign Up'
     }
   },
   methods: {

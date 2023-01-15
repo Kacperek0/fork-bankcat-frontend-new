@@ -3,7 +3,7 @@
     <v-row class="d-flex justify-center align-center">
       <v-col sm="12" md="6" lg="4">
         <v-card>
-          <v-card-title>SingIn</v-card-title>
+          <v-card-title>Sign In</v-card-title>
           <v-card-text>
 
             <validation-observer
@@ -61,7 +61,7 @@
                   large
                   type="submit"
                   width="100%"
-                >Sing In
+                >Sign In
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -88,7 +88,7 @@ export default {
   },
   head() {
     return {
-      title: 'SingIn'
+      title: 'Sign In'
     }
   },
   methods: {
