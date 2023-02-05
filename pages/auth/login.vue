@@ -3,7 +3,7 @@
     <v-row class="d-flex justify-center align-center">
       <v-col sm="12" md="6" lg="4">
         <v-card>
-          <v-card-title>Sign In</v-card-title>
+          <v-card-title>{{ $t('sign_in') }}</v-card-title>
           <v-card-text>
 
             <validation-observer
@@ -32,18 +32,18 @@
 
                 <validation-provider
                   v-slot="{ errors }"
-                  name="Password"
+                  :name="$t('password')"
                   rules="required|min:4"
                   tag="div"
                   vid="password"
                 >
-                  <label class="subtitle-2" for="Password">Password</label>
+                  <label class="subtitle-2" for="Password">{{ $t('password') }}</label>
                   <v-text-field
                     id="Password"
                     v-model="password"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :error-messages="errors"
-                    label="Password"
+                    :label="$t('password')"
                     placeholder="Password"
                     :type="showPassword ? 'text' : 'password'"
                     name="password"
@@ -61,7 +61,7 @@
                   large
                   type="submit"
                   width="100%"
-                >Sign In
+                >{{ $t('sign_in_action') }}
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -88,7 +88,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sign In'
+      title:  this.$t('sign_in')
     }
   },
   methods: {
@@ -111,7 +111,7 @@ export default {
         this.dealWithFailedRequest(err)
 
         this.$refs.observer.setErrors({
-          email: 'Login incorrect'
+          email: this.$t('login_incorrect')
         })
       }
     }

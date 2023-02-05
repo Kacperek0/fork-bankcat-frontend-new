@@ -17,7 +17,7 @@
                   <v-col sm="12" md="6">
                     <validation-provider
                       v-slot="{ errors }"
-                      name="bank"
+                      :name="$t('choose_your_bank')"
                       class="d-flex"
                       rules="required"
                       tag="div"
@@ -37,7 +37,7 @@
 
                     <validation-provider
                       v-slot="{ errors }"
-                      name="file"
+                      :name="$t('file')"
                       class="d-flex"
                       rules="required"
                       tag="div"

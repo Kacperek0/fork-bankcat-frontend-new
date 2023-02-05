@@ -3,7 +3,7 @@
     <v-row class="d-flex justify-center align-center">
       <v-col sm="12" md="6" lg="4">
         <v-card>
-          <v-card-title>SignUp</v-card-title>
+          <v-card-title>{{ $t('sign_up') }}</v-card-title>
           <v-card-text>
 
             <validation-observer
@@ -32,17 +32,17 @@
 
                 <validation-provider
                   v-slot="{ errors }"
-                  name="name"
+                  :name="$t('first_name')"
                   rules="required|min:3"
                   tag="div"
                   vid="name"
                 >
-                  <label class="subtitle-2" for="name">First name</label>
+                  <label class="subtitle-2" for="name">{{ $t('first_name') }}</label>
                   <v-text-field
-                    id="First_name"
+                    id="first_name"
                     v-model="name"
                     :error-messages="errors"
-                    label="First name"
+                    :label="$t('first_name')"
                     name="name"
                     outlined
                     required
@@ -51,17 +51,17 @@
 
                 <validation-provider
                   v-slot="{ errors }"
-                  name="surname"
+                  :name="$t('last_name')"
                   rules="required|min:3"
                   tag="div"
                   vid="surname"
                 >
-                  <label class="subtitle-2" for="surname">Last name</label>
+                  <label class="subtitle-2" for="surname">{{ $t('last_name') }}</label>
                   <v-text-field
                     id="surname"
                     v-model="surname"
                     :error-messages="errors"
-                    label="Last name"
+                    :label="$t('last_name')"
                     name="surname"
                     outlined
                     required
@@ -70,7 +70,7 @@
 
                 <validation-provider
                   v-slot="{ errors }"
-                  name="hashed_password"
+                  :name="$t('password')"
                   rules="required|min:8|password:@password_confirmation"
                   tag="div"
                   vid="hashed_password"
@@ -79,7 +79,7 @@
                     v-model="hashed_password"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :error-messages="errors"
-                    label="Password"
+                    :label="$t('password')"
                     :type="showPassword ? 'text' : 'password'"
                     name="hashed_password"
                     outlined
@@ -89,7 +89,7 @@
 
                 <validation-provider
                   v-slot="{ errors }"
-                  name="password confirmation"
+                  :name="$t('password_confirmation')"
                   rules="required|min:8"
                   tag="div"
                   vid="password_confirmation"
@@ -98,7 +98,7 @@
                     v-model="password_confirmation"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :error-messages="errors"
-                    label="Password confirmation"
+                    :label="$t('password_confirmation')"
                     :type="showPassword ? 'text' : 'password'"
                     autocomplete="new_password"
                     name="password_confirmation"
@@ -115,7 +115,7 @@
                   large
                   type="submit"
                   width="100%"
-                >Sign Up
+                >{{ $t('sign_up_action') }}
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -145,7 +145,7 @@ export default {
   },
   head() {
     return {
-      title: 'Sign Up'
+      title: this.$t('sign_up')
     }
   },
   methods: {
@@ -162,7 +162,7 @@ export default {
         this.isLoading = false
 
         this.$notifier.showMessage({
-          content: 'Check Your email for activation link !',
+          content: this.$t('register_check_your_email'),
           color: 'green',
           timeout: 10000
         })

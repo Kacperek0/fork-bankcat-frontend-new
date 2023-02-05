@@ -28,7 +28,7 @@
               <template #activator="{ on, attrs }">
                 <validation-provider
                   v-slot="{ errors }"
-                  name="date"
+                  :name="$t('date')"
                   class="d-flex"
                   rules="required"
                   tag="div"
@@ -53,7 +53,7 @@
 
             <validation-provider
               v-slot="{ errors }"
-              name="description"
+              :name="$t('description')"
               class="d-flex"
               rules="required"
               tag="div"
@@ -69,7 +69,7 @@
 
             <validation-provider
               v-slot="{ errors }"
-              name="amount"
+              :name="$t('amount')"
               class="d-flex"
               rules="required|min_value:1"
               tag="div"
@@ -87,7 +87,7 @@
 
             <validation-provider
               v-slot="{ errors }"
-              name="category"
+              :name="$t('category')"
               class="d-flex"
               rules="required"
               tag="div"

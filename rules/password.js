@@ -4,5 +4,5 @@ extend('password', {
   validate(value, { target }) {
     return value === target
   },
-  message: 'Passwords are not equal'
+  message: (_, values) => i18n.$t('passwords_are_not_equal', values)
 })

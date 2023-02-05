@@ -1,5 +1,16 @@
 export default {
+  welcome: 'Witamy',
   slogan: 'Łatwe oszczędzanie',
+  sign_in: 'Logowanie',
+  sign_up: 'Rejestracja',
+  password: 'Hasło',
+  sign_in_action: 'Zaloguj się',
+  sign_up_action: 'Zarejestruj się',
+  login_incorrect: 'Logowanie niepoprawne',
+  first_name: 'Imię',
+  last_name: 'Nazwisko',
+  password_confirmation: 'Potwierdzenie hasła',
+  passwords_are_not_equal: 'Hasła nie są takie same',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',
@@ -49,6 +60,8 @@ export default {
   add_spending: 'Dodaj wydatek',
   assign_to_category: 'Ustaw do kategorii',
   no_category: 'Brak kategorii',
+  total_spendings_on : 'Całkowite wydatki na',
+  category_insights: 'Podgląd kategorii',
   budgeted_vs_non_budgeted_expenses: 'Wydatki zabudżetowane vs niezabudżetowane',
   '$vuetify': {
     badge: 'Odznaka',

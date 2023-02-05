@@ -8,7 +8,7 @@
     <v-card v-if="category">
       <v-card-title>
         <div>
-          <div class="headline">Category insights</div>
+          <div class="headline">{{ $t('category_insights') }}</div>
           <div class="primary--text">{{ category.name }}</div>
         </div>
       </v-card-title>
@@ -16,7 +16,7 @@
 
         <v-card elevation="2" class="mb-4">
           <v-card-title>
-            Total spendings on:
+            {{ $t('total_spendings_on') }}:
           </v-card-title>
           <v-card-text>
             <div class="pink--text text-h3 font-weight-bold">{{ category.spendings | money }} pln</div>
@@ -74,11 +74,15 @@ export default {
       options: {},
       form: {
         value: 0
-      },
-      headers: [
-        { text: 'Date', align: 'left', value: 'date', sortable: false, width: 110 },
-        { text: 'Description', align: 'left', value: 'description', sortable: false },
-        { text: 'Amount', align: 'right', value: 'amount', sortable: false, width: 150 }
+      }
+    }
+  },
+  computed: {
+    headers() {
+      return [
+        { text: this.$t('date'), align: 'left', value: 'date', sortable: false, width: 110 },
+        { text: this.$t('description'), align: 'left', value: 'description', sortable: false },
+        { text: this.$t('amount'), align: 'right', value: 'amount', sortable: false, width: 150 }
       ]
     }
   },

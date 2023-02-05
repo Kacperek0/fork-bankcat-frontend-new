@@ -1,5 +1,16 @@
 export default {
+  welcome: 'Welcome',
   slogan: 'Easy savings',
+  sign_in: 'Sing in',
+  sign_up: 'Sign up',
+  password: 'Password',
+  sign_in_action: 'Sign in',
+  sign_up_action: 'Sign up',
+  login_incorrect: 'Login incorrect',
+  first_name: 'First name',
+  last_name: 'Last name',
+  password_confirmation: 'Password confirmation',
+  passwords_are_not_equal: 'Passwords are not equal',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',
@@ -50,6 +61,8 @@ export default {
   assign_to_category: 'Assign to category',
   no_category: 'No category',
   budgeted_vs_non_budgeted_expenses: 'Budgeted vs non-budgeted expenses',
+  total_spendings_on : 'Total spendings on',
+  category_insights: 'Category insights',
   '$vuetify': {
     badge: 'Badge',
     close: 'Close',

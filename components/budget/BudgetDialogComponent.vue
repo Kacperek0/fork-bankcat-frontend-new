@@ -18,7 +18,7 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="value"
+              :name="$t('amount')"
               class="d-flex"
               rules="required|min_value:1"
               tag="div"
@@ -33,7 +33,6 @@
                 suffix="PLN"
               ></v-text-field>
             </validation-provider>
-
 
             <v-text-field
               :value="spending | money"

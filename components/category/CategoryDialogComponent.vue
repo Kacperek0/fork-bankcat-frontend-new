@@ -18,7 +18,7 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name"
+              :name="$t('name')"
               class="d-flex"
               rules="required"
               tag="div"
