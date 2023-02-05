@@ -13,7 +13,7 @@
       <v-form ref="form" :disabled="isLoading" @submit.prevent="handleSubmit(handle)">
         <v-card>
           <v-card-title>
-            <span class="headline">{{ isUpdate ? 'Change budget' : 'Create budget' }}</span>
+            <span class="headline">{{ isUpdate ? $t('update') : $t('create') }}</span>
           </v-card-title>
           <v-card-text>
             <validation-provider
@@ -27,7 +27,7 @@
               <v-text-field
                 v-model="form.value"
                 :error-messages="errors"
-                label="Amount"
+                :label="$t('amount')"
                 type="number"
                 required
                 suffix="PLN"
@@ -37,7 +37,7 @@
 
             <v-text-field
               :value="spending | money"
-              label="Current spend in category"
+              :label="$t('current_spend_in_category')"
               type="number"
               readonly
               disabled
@@ -62,7 +62,7 @@
               color="primary"
               type="submit"
             >
-              {{ isUpdate ? 'Update' : 'Create' }}
+              {{ isUpdate ? $t('update') : $t('create') }}
             </v-btn>
           </v-card-actions>
 
@@ -153,7 +153,7 @@ export default {
         await this[this.isUpdate ? 'update' : 'create']()
 
         this.$notifier.showMessage({
-          content: this.isUpdate ? 'Category saved' : 'Category created',
+          content: this.isUpdate ? this.$t('saved') : this.$t('created'),
           color: 'green'
         })
 

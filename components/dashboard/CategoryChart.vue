@@ -38,7 +38,7 @@ export default {
     options() {
       return {
         title: {
-          text: 'Category expsenses',
+          text: this.$t('category_expsenses'),
           align: 'center',
           offsetY: -2
         },

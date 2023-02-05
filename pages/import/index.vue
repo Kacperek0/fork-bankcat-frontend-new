@@ -10,7 +10,7 @@
           >
             <v-form ref="form" :disabled="isLoading" @submit.prevent="handleSubmit(handle)">
               <v-card-title class="d-flex">
-                Import bank data
+                {{ $t('import_bank_data') }}
               </v-card-title>
               <v-card-text>
                 <v-row>
@@ -26,7 +26,7 @@
                       <v-select
                         v-model="form.bank"
                         :items="banks"
-                        label="Bank"
+                        :label="$t('choose_your_bank')"
                         item-text="name"
                         :error-messages="errors"
                         item-value="url"
@@ -47,7 +47,7 @@
                         v-model="form.file"
                         :accept="fileAccept"
                         :error-messages="errors"
-                        label="File"
+                        :label="$t('file')"
                         required
                       ></v-file-input>
                     </validation-provider>
@@ -64,7 +64,7 @@
                   color="primary"
                   type="submit"
                 >
-                  Upload
+                  {{ $t('import') }}
                 </v-btn>
               </v-card-actions>
             </v-form>
@@ -123,7 +123,7 @@ export default {
   },
   head() {
     return {
-      title: 'Import data'
+      title: this.$t('menu.import')
     }
   },
   computed: {

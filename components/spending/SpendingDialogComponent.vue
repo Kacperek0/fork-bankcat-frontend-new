@@ -13,7 +13,7 @@
       <v-form ref="form" :disabled="isLoading" @submit.prevent="handleSubmit(handle)">
         <v-card>
           <v-card-title>
-            <span class="headline">{{ isUpdate ? 'Update' : 'Create' }}</span>
+            <span class="headline">{{ isUpdate ? $t('update') : $t('create') }}</span>
           </v-card-title>
           <v-card-text>
 
@@ -37,7 +37,7 @@
                   <v-text-field
                     v-model="form.date"
                     :error-messages="errors"
-                    label="Spending date"
+                    :label="$t('spending_date')"
                     prepend-icon="mdi-calendar"
                     readonly
                     v-bind="attrs"
@@ -62,7 +62,7 @@
               <v-text-field
                 v-model="form.description"
                 :error-messages="errors"
-                label="Description"
+                :label="$t('description')"
                 required
               ></v-text-field>
             </validation-provider>
@@ -78,7 +78,7 @@
               <v-text-field
                 v-model="form.amount"
                 :error-messages="errors"
-                label="Amount"
+                :label="$t('amount')"
                 type="number"
                 required
                 suffix="PLN"
@@ -96,7 +96,7 @@
               <v-select
                 v-model="form.category_id"
                 :items="categories"
-                label="Category"
+                :label="$t('category')"
                 item-text="name"
                 item-value="id"
                 :error-messages="errors"
@@ -113,7 +113,7 @@
               color="grey"
               text
               @click.native="close"
-            >Cancel
+            >{{ $t('cancel') }}
             </v-btn>
             <v-btn
               :disabled="isLoading"
@@ -122,7 +122,7 @@
               color="primary"
               type="submit"
             >
-              {{ isUpdate ? 'Update' : 'Create' }}
+              {{ isUpdate ? $t('update') : $t('create') }}
             </v-btn>
           </v-card-actions>
 
@@ -229,7 +229,7 @@ export default {
         await this[this.isUpdate ? 'update' : 'create']()
 
         this.$notifier.showMessage({
-          content: this.isUpdate ? 'Spending saved' : 'Spending created',
+          content: this.isUpdate ? this.$t('saved') : this.$t('created'),
           color: 'green'
         })
 

@@ -4,7 +4,7 @@
       <v-col md="12" lg="10">
         <v-card>
           <v-card-title class="d-flex">
-            <div>Budget</div>
+            <div>{{ $t('menu.budget') }}</div>
           </v-card-title>
 
           <v-card-text>
@@ -35,7 +35,7 @@
 
               <template #item.budget="{ item }">
                 <span v-if="item.budget <= 0" class="pink--text">
-                  No budget
+                  {{ $t('no_budget') }}
                 </span>
                 <template v-else>
                   {{ item.budget | money }} pln
@@ -44,24 +44,24 @@
 
               <template #item.result="{ item }">
                 <div v-if="item.budget <= 0" class="font-italic">
-                  No budget set!
+                  {{ $t('no_budget_set') }}
                 </div>
                 <div v-else-if="(item.budget) >= item.category.spendings" class="green--text">
-                  You are in control of Your spendings!
+                  {{ $t('budget_in_control') }}!
                 </div>
                 <div v-else class="pink--text">
-                  Budget exceeded!
+                  {{ $t('budget_exceeded') }}!
                 </div>
               </template>
 
               <template #item.action="{ item }">
                 <div class="d-flex">
                   <template v-if="item.budget === 0">
-                    <v-btn small color="green" class="mx-1" @click="create(item)">Set</v-btn>
+                    <v-btn small color="green" class="mx-1" @click="create(item)">{{ $t('set') }}</v-btn>
                   </template>
                   <template v-else>
-                    <v-btn small color="primary" class="mx-1" @click="edit(item)">Edit</v-btn>
-                    <v-btn small color="red" class="mx-1" @click="remove(item)">Delete</v-btn>
+                    <v-btn small color="primary" class="mx-1" @click="edit(item)">{{ $t('edit') }}</v-btn>
+                    <v-btn small color="red" class="mx-1" @click="remove(item)">{{ $t('delete') }}</v-btn>
                   </template>
                 </div>
               </template>
@@ -116,23 +116,25 @@ export default {
       total: 0,
       options: {},
       items: [],
-      headers: [
-        { text: 'Category', align: 'left', value: 'category', sortable: false },
-        { text: 'Spendings', align: 'left', value: 'category.spendings', sortable: false },
-        { text: 'Budget', align: 'left', value: 'budget', sortable: false },
-        { text: 'Result', align: 'left', value: 'result', sortable: false },
-        { text: 'Actions', sortable: false, align: 'left', value: 'action', width: 200 }
-      ]
     }
   },
   computed: {
+    headers(){
+      return [
+        { text: this.$t('category'), align: 'left', value: 'category', sortable: false },
+        { text: this.$t('spendings'), align: 'left', value: 'category.spendings', sortable: false },
+        { text: this.$t('budget'), align: 'left', value: 'budget', sortable: false },
+        { text: this.$t('result'), align: 'left', value: 'result', sortable: false },
+        { text: this.$t('actions'), sortable: false, align: 'left', value: 'action', width: 200 }
+      ]
+    },
     ...mapGetters('app', {
       date: 'getDate'
     })
   },
   head() {
     return {
-      title: 'Budget'
+      title: this.$t('menu.budget')
     }
   },
   watch: {
@@ -179,11 +181,11 @@ export default {
     async remove(item) {
       if (
         await this.$refs.confirm.open(
-          'Confirmation',
-          'Are you sure?',
+          this.$t('confirmation'),
+          this.$t('are_you_sure'),
           {
-            btnCancel: 'Cancel',
-            btnOk: 'Yes, delete'
+            btnCancel: this.$t('cancel'),
+            btnOk: this.$t('yes')
           }
         )
       ) {
@@ -191,7 +193,7 @@ export default {
           this.isLoading = true
           await this.$axios.$delete(`/api/budget/${item.id}`)
 
-          this.$notifier.showMessage({ content: 'Budget deleted', color: 'green' })
+          this.$notifier.showMessage({ content: this.$t('deleted'), color: 'green' })
 
           await this.refresh()
         } finally {

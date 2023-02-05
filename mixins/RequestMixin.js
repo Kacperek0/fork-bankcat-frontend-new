@@ -16,7 +16,8 @@ export default {
             if (typeof response.data.detail === 'string') {
               this.$notifier.showMessage({
                 content: response.data.detail,
-                color: 'red'
+                color: 'red',
+                timeout: 5000
               })
             }
             break

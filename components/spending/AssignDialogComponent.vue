@@ -13,7 +13,7 @@
       <v-form ref="form" :disabled="isLoading" @submit.prevent="handleSubmit(handle)">
         <v-card>
           <v-card-title>
-            <span class="headline">Assign to category</span>
+            <span class="headline">{{ $t('assign_to_category') }}</span>
           </v-card-title>
           <v-card-text>
 
@@ -28,7 +28,7 @@
               <v-select
                 v-model="form.category_id"
                 :items="categories"
-                label="Category"
+                :label="$t('category')"
                 item-text="name"
                 item-value="id"
                 :error-messages="errors"
@@ -45,7 +45,7 @@
               color="grey"
               text
               @click.native="close"
-            >Cancel
+            >{{ $t('cancel') }}
             </v-btn>
             <v-btn
               :disabled="isLoading"
@@ -54,7 +54,7 @@
               color="primary"
               type="submit"
             >
-              Assign
+              {{ $t('set') }}
             </v-btn>
           </v-card-actions>
 
@@ -141,7 +141,7 @@ export default {
         await this.$axios.post('/api/financial-record/mass-category-assigment', this.getForm())
 
         this.$notifier.showMessage({
-          content: 'Category assigned',
+          content: this.$t('assigned'),
           color: 'green'
         })
 

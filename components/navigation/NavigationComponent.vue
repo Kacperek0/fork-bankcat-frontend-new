@@ -5,12 +5,12 @@
 
       <div class="d-flex mr-1">
         <div class="d-flex align-center">
-          <router-link :to="{ name: 'dashboard' }">
+          <router-link :to="{ name: 'index' }">
             <v-img class="mr-2" :src="require('~/assets/logo.png')" />
           </router-link>
           <div class="d-none d-lg-block">
             <div>Bankcat</div>
-            <div class="caption pink--text">Easy savings</div>
+            <div class="caption pink--text">{{ $t('slogan') }}</div>
           </div>
         </div>
       </div>
@@ -20,12 +20,13 @@
           <v-btn
             v-for="m in menu"
             :key="`menu-${m.title}`"
-            :to="{ name: m.link }"
+            :to="getRoute(m)"
             plain
             active-class="pink--text"
+            @click.prevent="goTo(m)"
           >
             <v-icon dark class="mr-2">{{ m.icon }}</v-icon>
-            {{ m.title }}
+            {{ $t(`menu.${m.link}`) }}
           </v-btn>
         </v-toolbar-items>
 
@@ -47,6 +48,8 @@
           </v-btn>
         </div>
       </template>
+      <v-spacer></v-spacer>
+      <ToolbarLanguage />
 
     </v-app-bar>
 
@@ -74,12 +77,13 @@
             >
               <v-list-item-title>
                 <v-btn
-                  :to="{ name: m.link }"
+                  :to="getRoute(m)"
                   plain
                   active-class="pink--text"
+                  @click.prevent="goTo(m)"
                 >
                   <v-icon dark class="mr-2">{{ m.icon }}</v-icon>
-                  {{ m.title }}
+                  {{ $t(`menu.${m.link}`) }}
                 </v-btn>
               </v-list-item-title>
             </v-list-item>
@@ -141,10 +145,12 @@
 </template>
 <script>
 import DatePickerComponent from '~/components/navigation/DatePickerComponent'
+import ToolbarLanguage from '~/components/toolbars/ToolbarLanguage'
 
 export default {
   components: {
-    DatePickerComponent
+    DatePickerComponent,
+    ToolbarLanguage
   },
   data() {
     return {
@@ -177,6 +183,17 @@ export default {
       ],
       drawer: false,
       group: null
+    }
+  },
+  methods: {
+    goTo(route) {
+      this.$router.push(this.getRoute(route))
+    },
+    getRoute(route) {
+      return {
+        name: route.link,
+        query: this.$route.query
+      }
     }
   }
 }

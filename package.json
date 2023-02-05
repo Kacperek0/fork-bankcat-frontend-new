@@ -15,8 +15,10 @@
   "dependencies": {
     "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/i18n": "^7.3.1",
     "apexcharts": "^3.36.3",
     "core-js": "^3.25.3",
+    "flag-icons": "^6.6.6",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.39",
     "nuxt": "^2.15.8",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
+    "@nuxt/test-utils": "^3.1.1",
     "@nuxtjs/eslint-config": "^11.0.0",
     "@nuxtjs/eslint-module": "^3.1.0",
     "@nuxtjs/vuetify": "^1.12.3",
@@ -36,6 +39,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.5.1",
+    "jest": "^29.4.1",
     "prettier": "^2.7.1"
   }
 }

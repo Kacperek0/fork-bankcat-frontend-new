@@ -38,11 +38,11 @@ export default {
     options() {
       return {
         title: {
-          text: 'Budgeted vs Non-budgeted expenses',
+          text: this.$t('budgeted_vs_non_budgeted_expenses'),
           align: 'center',
           offsetY: -2
         },
-        labels: ['Budgeted', 'Non-budgeted'],
+        labels: [this.$t('budgeted'), this.$t('non_budgeted')],
         chart: {
           id: 'budget',
           background: 'rgba(0, 0, 0, 0)'

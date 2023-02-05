@@ -4,11 +4,11 @@
       <v-col md="12" lg="10">
         <v-card>
           <v-card-title class="d-flex">
-            <div>Categories</div>
+            <div>{{ $t('menu.categories') }}</div>
           </v-card-title>
 
           <v-card-text>
-            <v-btn color="green" class="mb-2" @click.prevent="create">Add category</v-btn>
+            <v-btn color="green" class="mb-2" @click.prevent="create">{{ $t('add_category') }}</v-btn>
 
             <v-data-table
               :headers="headers"
@@ -21,8 +21,8 @@
             >
               <template #item.action="{ item }">
                 <div class="d-flex">
-                  <v-btn small color="primary" class="mx-1" @click="edit(item)">Edit</v-btn>
-                  <v-btn small color="red" class="mx-1" @click="remove(item)">Delete</v-btn>
+                  <v-btn small color="primary" class="mx-1" @click="edit(item)">{{ $t('edit') }}</v-btn>
+                  <v-btn small color="red" class="mx-1" @click="remove(item)">{{ $t('delete') }}</v-btn>
                 </div>
               </template>
 
@@ -54,17 +54,20 @@ export default {
       isLoading: false,
       total: 0,
       options: {},
-      items: [],
-      headers: [
-        { text: 'Id', align: 'left', value: 'id', sortable: false },
-        { text: 'Name', align: 'left', value: 'name', sortable: false },
-        { text: 'Actions', sortable: false, align: 'left', value: 'action', width: 200 }
-      ]
+      items: []
     }
   },
   head() {
     return {
-      title: 'Categories'
+      title: this.$t('menu.categories')
+    }
+  },
+  computed: {
+    headers() {
+      return [
+        { text: this.$t('name'), align: 'left', value: 'name', sortable: false },
+        { text: this.$t('actions'), sortable: false, align: 'left', value: 'action', width: 200 }
+      ]
     }
   },
   watch: {
@@ -104,11 +107,11 @@ export default {
     async remove(item) {
       if (
         await this.$refs.confirm.open(
-          'Confirmation',
-          'Are you sure?',
+          this.$t('confirmation'),
+          this.$t('are_you_sure'),
           {
-            btnCancel: 'Cancel',
-            btnOk: 'Yes, delete'
+            btnCancel: this.$t('cancel'),
+            btnOk: this.$t('yes')
           }
         )
       ) {
@@ -116,7 +119,7 @@ export default {
           this.isLoading = true
           await this.$axios.$delete(`/api/categories/${item.id}`)
 
-          this.$notifier.showMessage({ content: 'Category deleted', color: 'green' })
+          this.$notifier.showMessage({ content: this.$t('deleted'), color: 'green' })
 
           await this.refresh()
         } finally {

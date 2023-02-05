@@ -4,31 +4,26 @@
       <v-col md="12" lg="10">
         <v-card>
           <v-card-title class="d-flex">
-            <div>Spendings</div>
+            <div>{{ $t('menu.spendings') }}</div>
           </v-card-title>
 
           <v-card-text>
             <div class="d-flex">
-              <v-btn color="green" class="mb-2" @click.prevent="create">Add spending</v-btn>
+              <v-btn color="green" class="mb-2" @click.prevent="create">{{ $t('add_spending') }}</v-btn>
               <v-spacer></v-spacer>
-              <v-btn color="blue" class="mb-2" :disabled="selected.length === 0" @click.prevent="assign">Assign to
-                category
+              <v-btn color="blue" class="mb-2" :disabled="selected.length === 0" @click.prevent="assign">
+                {{ $t('assign_to_category') }}
               </v-btn>
             </div>
 
             <div class="d-flex align-center">
               <v-text-field
-                v-model="filters.query"
+                v-model="query"
                 placeholder="Search phrase"
                 clearable
-                class="mr-2">
+                class="mr-2"
+                @change="queryChanged">
               </v-text-field>
-              <v-btn
-                small
-                color="primary"
-                @click.prevent="getDataFromApi">
-                Search
-              </v-btn>
             </div>
 
             <v-data-table
@@ -37,7 +32,7 @@
               :items="items"
               :loading="isLoading"
               :options.sync="options"
-              :items-per-page="1000"
+              :items-per-page="50"
               :footer-props="{
                 'items-per-page-options': [10, 50, 100, 1000]
               }"
@@ -57,13 +52,13 @@
                 <template v-if="item.category">
                   {{ item.category.name }}
                 </template>
-                <div class="grey--text caption font-italic">No category</div>
+                <div class="grey--text caption font-italic">{{ $t('no_category') }}</div>
 
               </template>
 
               <template #item.action="{ item }">
                 <div class="d-flex">
-                  <v-btn small color="red" class="mx-1" @click="remove(item)">Delete</v-btn>
+                  <v-btn small color="red" class="mx-1" @click="remove(item)">{{ $t('delete') }}</v-btn>
                 </div>
               </template>
 
@@ -93,6 +88,8 @@ export default {
   },
   data() {
     return {
+      query: null,
+      queryTimeout: null,
       filters: {
         query: ''
       },
@@ -108,27 +105,33 @@ export default {
       isLoading: false,
       total: 0,
       options: {},
-      items: [],
-      headers: [
-        { text: 'Date', align: 'left', value: 'date', sortable: false, width: 110 },
-        { text: 'Description', align: 'left', value: 'description', sortable: false },
-        { text: 'Category', align: 'left', value: 'category', sortable: false },
-        { text: 'Amount', align: 'left', value: 'amount', sortable: false, width: 150 },
-        { text: 'Actions', sortable: false, align: 'left', value: 'action', width: 100 }
-      ]
+      items: []
+    }
+  },
+  head() {
+    return {
+      title: this.$t('menu.spendings')
     }
   },
   computed: {
+    headers(){
+      return  [
+        { text: this.$t('date'), align: 'left', value: 'date', sortable: false, width: 110 },
+        { text: this.$t('description'), align: 'left', value: 'description', sortable: false },
+        { text: this.$t('category'), align: 'left', value: 'category', sortable: false },
+        { text: this.$t('amount'), align: 'left', value: 'amount', sortable: false, width: 150 },
+        { text: this.$t('actions'), sortable: false, align: 'left', value: 'action', width: 100 }
+      ]
+    },
     ...mapGetters('app', {
       date: 'getDate'
     })
   },
-  head() {
-    return {
-      title: 'Spendings'
-    }
-  },
   watch: {
+    query(query) {
+      this.filters.query = query
+      this.queryChanged()
+    },
     options: {
       async handler() {
         await this.getDataFromApi()
@@ -140,6 +143,15 @@ export default {
     }
   },
   methods: {
+    queryChanged() {
+      clearTimeout(this.queryTimeout)
+      if (this.filters.query && this.filters.query.length > 0 && this.filters.query.length < 3) {
+        return
+      }
+      this.queryTimeout = setTimeout(() => {
+        this.getDataFromApi()
+      }, 500)
+    },
     close() {
       this.dialog = {
         show: false,
@@ -173,11 +185,11 @@ export default {
     async remove(item) {
       if (
         await this.$refs.confirm.open(
-          'Confirmation',
-          'Are you sure?',
+          this.$t('confirmation'),
+          this.$t('are_you_sure'),
           {
-            btnCancel: 'Cancel',
-            btnOk: 'Yes, delete'
+            btnCancel: this.$t('cancel'),
+            btnOk: this.$t('yes')
           }
         )
       ) {
@@ -185,7 +197,7 @@ export default {
           this.isLoading = true
           await this.$axios.$delete(`/api/financial-record/${item.id}`)
 
-          this.$notifier.showMessage({ content: 'Spending deleted', color: 'green' })
+          this.$notifier.showMessage({ content: this.$t('deleted'), color: 'green' })
 
           await this.refresh()
         } finally {
@@ -215,8 +227,8 @@ export default {
         })
 
         if (response) {
-          this.items = response.data
-          this.total = response.data.length
+          this.items = response.data.records
+          this.total = response.data.total
         }
       } catch (e) {
       } finally {

@@ -39,6 +39,8 @@ export default {
     { src: '~/plugins/veeValidate.js', mode: 'client' },
     { src: '~/plugins/notifier.js', mode: 'client' },
     { src: '~/plugins/apexcharts.js', mode: 'client' },
+    { src: '~/plugins/watchDate.js', mode: 'client' },
+    { src: '~/plugins/vuetify.js', mode: 'client' },
 
     { src: '~/filters/formatDate.js', mode: 'client' },
     { src: '~/filters/money.js', mode: 'client' },
@@ -61,8 +63,39 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    strategy: 'no_prefix',
+    locales: [
+      {
+        code: 'pl',
+        file: 'pl.js',
+        flag: 'pl'
+      },
+      {
+        code: 'en',
+        file: 'en.js',
+        flag: 'us'
+      }
+    ],
+    defaultLocale: 'pl',
+    lazy: true,
+    langDir: 'lang/',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'  // recommended
+    },
+    vueI18n: {
+      fallbackLocale: 'en',
+      debug: false,
+      silentTranslationWarn: true,
+      silentFallbackWarn: true
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title>Alert board</v-card-title>
+    <v-card-title>{{ $t('alert_board') }}</v-card-title>
     <v-card-text>
 
       <v-data-table
@@ -76,12 +76,16 @@ export default {
       items: [],
       isLoading: false,
       total: 0,
-      options: {},
-      headers: [
-        { text: 'Category', align: 'left', value: 'category', sortable: false },
-        { text: 'Spendings', align: 'left', value: 'category.spendings', sortable: false },
-        { text: 'Budget', align: 'left', value: 'budget', sortable: false },
-        { text: 'Exceeding', align: 'left', value: 'exceeding', sortable: false }
+      options: {}
+    }
+  },
+  computed: {
+    headers(){
+      return  [
+        { text: this.$t('category'), align: 'left', value: 'category', sortable: false },
+        { text: this.$t('spendings'), align: 'left', value: 'category.spendings', sortable: false },
+        { text: this.$t('budget'), align: 'left', value: 'budget', sortable: false },
+        { text: this.$t('exceeding'), align: 'left', value: 'exceeding', sortable: false }
       ]
     }
   },

@@ -39,7 +39,7 @@ export default {
   },
   head() {
     return {
-      title: 'Dashboard'
+      title: this.$t('menu.dashboard')
     }
   },
   computed: {

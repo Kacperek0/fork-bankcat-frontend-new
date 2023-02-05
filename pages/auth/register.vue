@@ -161,9 +161,13 @@ export default {
 
         this.isLoading = false
 
-        this.$notifier.showMessage({ content: 'You can sign in now.', color: 'green' })
+        this.$notifier.showMessage({
+          content: 'Check Your email for activation link !',
+          color: 'green',
+          timeout: 10000
+        })
 
-        await this.$router.push({ name: 'auth-login' })
+        await this.$router.push({ name: 'index' })
       } catch (err) {
         this.isLoading = false
         this.dealWithFailedRequest(err)

@@ -1,7 +1,9 @@
 import moment from 'moment'
 
+const params = (new URL(document.location)).searchParams;
+
 export const state = () => ({
-  date: moment().format('YYYY-MM')
+  date: moment(params.get('date') || moment()).format('YYYY-MM')
 })
 
 export const getters = {
