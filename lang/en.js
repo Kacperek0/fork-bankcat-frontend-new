@@ -1,7 +1,7 @@
 export default {
   welcome: 'Welcome',
   slogan: 'Easy savings',
-  sign_in: 'Sing in',
+  sign_in: 'Sign in',
   sign_up: 'Sign up',
   password: 'Password',
   sign_in_action: 'Sign in',
