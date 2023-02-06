@@ -11,6 +11,7 @@ export default {
   last_name: 'Nazwisko',
   password_confirmation: 'Potwierdzenie hasła',
   passwords_are_not_equal: 'Hasła nie są takie same',
+  register_check_your_email: 'Na podany adres email wysłaliśmy link aktywacyjny!',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',
@@ -60,7 +61,7 @@ export default {
   add_spending: 'Dodaj wydatek',
   assign_to_category: 'Ustaw do kategorii',
   no_category: 'Brak kategorii',
-  total_spendings_on : 'Całkowite wydatki na',
+  total_spendings_on: 'Całkowite wydatki na',
   category_insights: 'Podgląd kategorii',
   budgeted_vs_non_budgeted_expenses: 'Wydatki zabudżetowane vs niezabudżetowane',
   '$vuetify': {
