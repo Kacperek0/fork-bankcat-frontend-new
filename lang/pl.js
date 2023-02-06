@@ -12,6 +12,8 @@ export default {
   password_confirmation: 'Potwierdzenie hasła',
   passwords_are_not_equal: 'Hasła nie są takie same',
   register_check_your_email: 'Na podany adres email wysłaliśmy link aktywacyjny!',
+  account_activated: 'Konto zostało aktywowane, możesz się już zalogować',
+  account_activation_failed: 'Aktywacja nie powiodła się, sprawdź link!',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',

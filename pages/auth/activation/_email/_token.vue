@@ -51,13 +51,13 @@ export default {
         })
 
         this.$notifier.showMessage({
-          content: 'Account activated ! You can sign in now!',
+          content: this.$t('account_activated'),
           color: 'green',
           timeout: 5000
         })
       } catch (err) {
         this.$notifier.showMessage({
-          content: 'Activation failed, check link!',
+          content: this.$t('account_activation_failed'),
           color: 'red',
           timeout: 5000
         })

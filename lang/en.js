@@ -12,6 +12,8 @@ export default {
   password_confirmation: 'Password confirmation',
   passwords_are_not_equal: 'Passwords are not equal',
   register_check_your_email: 'Check your email address for activation link!',
+  account_activated: 'Account activated ! You can sign in now!',
+  account_activation_failed: 'Activation failed, check link!',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',
