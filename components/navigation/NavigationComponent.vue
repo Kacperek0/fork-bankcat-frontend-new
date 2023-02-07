@@ -9,7 +9,7 @@
             <v-img class="mr-2" :src="require('~/assets/logo.png')" />
           </router-link>
           <div class="d-none d-lg-block">
-            <div>Bankcat</div>
+            <div class="logo">Bankcat</div>
             <div class="caption pink--text">{{ $t('slogan') }}</div>
           </div>
         </div>
@@ -120,7 +120,7 @@
                   active-class="pink--text"
                 >
                   <v-icon dark class="mr-2">mdi-account-circle</v-icon>
-                  Login
+                  {{ $t('sign_in') }}
                 </v-btn>
               </v-list-item-title>
             </v-list-item>
@@ -133,7 +133,7 @@
                   active-class="pink--text"
                 >
                   <v-icon dark class="mr-2">mdi-account-plus</v-icon>
-                  Register
+                  {{ $t('register') }}
                 </v-btn>
               </v-list-item-title>
             </v-list-item>

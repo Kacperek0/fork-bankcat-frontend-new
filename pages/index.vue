@@ -5,8 +5,8 @@
         <v-card>
           <v-card-title>{{ $t('welcome') }}</v-card-title>
           <v-card-text class='d-flex justify-center'>
-            <v-btn class='ma-1' :to="{ name: 'auth-login' }" color='primary'>{{ $t('sign_in') }}</v-btn>
-            <v-btn class='ma-1' :to="{ name: 'auth-register' }" color='secondary'>{{ $t('sign_up') }}</v-btn>
+            <v-btn class='ma-1' :to="{ name: 'auth-login' }" color="primary">{{ $t('sign_in') }}</v-btn>
+            <v-btn class='ma-1' :to="{ name: 'auth-register' }" color="secondary">{{ $t('sign_up') }}</v-btn>
           </v-card-text>
         </v-card>
       </v-col>
