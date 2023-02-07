@@ -133,7 +133,7 @@
                   active-class="pink--text"
                 >
                   <v-icon dark class="mr-2">mdi-account-plus</v-icon>
-                  {{ $t('register') }}
+                  {{ $t('sign_up') }}
                 </v-btn>
               </v-list-item-title>
             </v-list-item>
