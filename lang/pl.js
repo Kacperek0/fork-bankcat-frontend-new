@@ -14,6 +14,7 @@ export default {
   register_check_your_email: 'Na podany adres email wysłaliśmy link aktywacyjny!',
   account_activated: 'Konto zostało aktywowane, możesz się już zalogować',
   account_activation_failed: 'Aktywacja nie powiodła się, sprawdź link!',
+  no_spendings_found: 'W zadanym okresie czasu nie ma żadnych wydatków',
   menu: {
     dashboard: 'Dashboard',
     import: 'Import',

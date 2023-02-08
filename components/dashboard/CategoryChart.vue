@@ -7,7 +7,7 @@
         :options="options"
         :series="series" />
       <div v-else class="no-data">
-        <span>No spendings found!</span>
+        <span>{{ $t('no_spendings_found') }}</span>
       </div>
     </v-card-text>
   </v-card>
